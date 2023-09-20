@@ -1,21 +1,33 @@
-name: Terraform
+name: Terraform Workflow
+
 on:
-  workflow_dispatch:
+  workflow_dispatch: # This allows manual triggering of the workflow
+
 jobs:
   terraform:
     name: Terraform
-    env:
-      AWS_ACCESS_KEY: ${{ secrets.AWS_DEVOPS_ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEOPS_SECRET_ACCESS_KEY }}
     runs-on: ubuntu-latest
-    environment: production
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEVOPS_ACCESS_KEY }} # Note the environment variable names
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEOPS_SECRET_ACCESS_KEY }}
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-     - name: Setup Terraform
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 1.0.0 
-          tf_actions_subcommand: 'init'
-          tf_actions_working_dir: '.'
-          tf_actions_comment: true
+          terraform_version: 1.0.0
+          
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./  # Assuming your Terraform configuration files are in the root directory
+
+      - name: Terraform Plan (Replace with your own Terraform commands)
+        run: terraform plan -out=tfplan
+        working-directory: ./  # Assuming your Terraform configuration files are in the root directory
+
+      - name: Terraform Apply (Replace with your own Terraform commands)
+        run: terraform apply -auto-approve tfplan
+        working-directory: ./  # Assuming your Terraform configuration files are in the root directory
