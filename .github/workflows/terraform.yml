@@ -5,8 +5,8 @@ jobs:
   terraform:
     name: Terraform
     env:
-      AWS_ACCESS_KEY: ${{ AWS_DEVOPS_ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ AWS_DEOPS_SECRET_ACCESS_KEY }}
+      AWS_ACCESS_KEY: '${{ secrets.AWS_DEVOPS_ACCESS_KEY }}'
+      AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_DEOPS_SECRET_ACCESS_KEY }}'
     runs-on: ubuntu-latest
     environment: production
     steps:
