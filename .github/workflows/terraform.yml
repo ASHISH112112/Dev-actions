@@ -1,45 +1,35 @@
-name: 'Terraform'
-
+name: Terraform
 on:
   workflow_dispatch:
-
 jobs:
   terraform:
-    name: 'Terraform'
+    name: Terraform
     env:
-         #aws secrets
-         AWS_ACCESS_KEY: ${{ secretes.AWS_DEVOPS_ACCESS_KEY }} 
-         AWS_SECRET_ACCESS_KEY: ${{ AWS_DEOPS_SECRET_ACCESS_KEY }}
-
+      AWS_ACCESS_KEY: ${{ secretes.AWS_DEVOPS_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ AWS_DEOPS_SECRET_ACCESS_KEY }}
     runs-on: ubuntu-latest
     environment: production
-
-     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
- 
-  # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      uses: hashicorp/terraform-github-action@master
-      with:
-      tf_actions_version: 0.14.3
-      tf_actions_subcommand: 'itit'
-      tf_actions_working_dir: '.'
-      tf_actions_comment: true
-
-    -name: Terraform plan 
-      uses: hashicorp/terraform-github-action@master
-      with:
-      tf_actions_version: 0.14.3
-      tf_actions_subcommand: 'plan'
-      tf_actions_working_dir: '.'
-      tf_actions_comment: true
-
-   -name: Terraform apply 
-      uses: hashicorp/terraform-github-action@master
-      with:
-      tf_actions_version: 0.14.3
-      tf_actions_subcommand: 'apply'
-      tf_actions_working_dir: '.'
-      tf_actions_comment: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Terraform Init
+        uses: hashicorp/terraform-github-action@master
+        with: null
+        tf_actions_version: 0.14.3
+        tf_actions_subcommand: itit
+        tf_actions_working_dir: .
+        tf_actions_comment: true
+      - name: Terraform plan
+        uses: hashicorp/terraform-github-action@master
+        with: null
+        tf_actions_version: 0.14.3
+        tf_actions_subcommand: plan
+        tf_actions_working_dir: .
+        tf_actions_comment: true
+      - name: Terraform apply
+        uses: hashicorp/terraform-github-action@master
+        with: null
+        tf_actions_version: 0.14.3
+        tf_actions_subcommand: apply
+        tf_actions_working_dir: .
+        tf_actions_comment: true
