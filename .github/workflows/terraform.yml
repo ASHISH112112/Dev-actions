@@ -13,7 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: terraform deploy
-        run: |
-          - terraform init
-          - terraform plan
-          - terraform apply
+        uses: hashicorp/terraform-github-action@master
+        with:
+          tf_actions_version: 0.14.3
+          tf_actions_subcommand: 'init'
+          tf_actions_working_dir: '.'
+          tf_actions_comment: true
