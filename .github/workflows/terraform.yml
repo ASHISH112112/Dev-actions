@@ -9,11 +9,10 @@ jobs:
     env:
          #aws secrets
          AWS_ACCESS_KEY: ${{ secretes.AWS_DEVOPS_ACCESS_KEY }} 
-         AWS_SECRET_ACCESS_KEY: ${{AWS_DEOPS_SECRET_ACCESS_KEY }}
+         AWS_SECRET_ACCESS_KEY: ${{ AWS_DEOPS_SECRET_ACCESS_KEY }}
 
     runs-on: ubuntu-latest
     environment: production
-
  steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
