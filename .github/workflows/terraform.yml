@@ -12,10 +12,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: terraform deploy
-        uses: hashicorp/terraform-github-action@master
+     - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
         with:
-          tf_actions_version: 0.14.3
+          terraform_version: 1.0.0 
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: '.'
           tf_actions_comment: true
