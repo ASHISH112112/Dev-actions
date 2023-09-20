@@ -1,4 +1,7 @@
 name: Terraform Workflow
+
+# Rest of your workflow configuration...
+
 provider: "aws" {
   region: "us-east-2"
 }
