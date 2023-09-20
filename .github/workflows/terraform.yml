@@ -1,5 +1,10 @@
 name: Terraform Workflow
 
+provider "aws" {
+  region = "us-east-2"
+  # You can also include your access_key and secret_key here if not using environment variables.
+}
+
 on:
   workflow_dispatch: # This allows manual triggering of the workflow
 
